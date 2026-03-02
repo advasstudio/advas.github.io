@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #FAF7F2;
+      --bg2:      #F3EFE8;
+      --ink:      #211D15;
+      --ink-soft: #7A6F60;
+      --ink-faint:#BDB5A8;
+      --rust:     #C0522A;
+      --rust-lt:  #E8C9BB;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grain */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.8rem 2.5rem;
+    }
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-right {
+      display: flex; align-items: center; gap: 2.5rem;
+    }
+    .nav-right a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-right a:hover { color: var(--ink); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 2.5rem 6rem;
+      position: relative;
+    }
+
+    /* Decorative arc */
+    .arc {
+      position: absolute;
+      top: 10vh; right: 8vw;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      border: 1px solid var(--ink-faint);
+      opacity: 0.5;
+      pointer-events: none;
+      animation: spin 40s linear infinite;
+    }
+    .arc::after {
+      content: '';
+      position: absolute;
+      top: 28px; left: 28px; right: 28px; bottom: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--rust-lt);
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: up 0.8s 0.1s ease forwards;
+    }
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3.8rem, 9vw, 9rem);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      max-width: 900px;
+      opacity: 0;
+      animation: up 0.9s 0.25s ease forwards;
+    }
+    .hero-headline em { font-style: italic; color: var(--rust); }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 4rem;
+      opacity: 0;
+      animation: up 0.9s 0.45s ease forwards;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      max-width: 380px;
+      font-weight: 300;
+    }
+    .hero-cta {
+      display: flex; align-items: center; gap: 0.6rem;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.85rem;
+      font-weight: 400;
+      padding-bottom: 2px;
+      border-bottom: 1px solid var(--ink);
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .hero-cta:hover { color: var(--rust); border-color: var(--rust); }
+    .hero-cta svg { transition: transform 0.2s; }
+    .hero-cta:hover svg { transform: translate(3px, -3px); }
+
+    @keyframes up {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── RULE ─── */
+    .rule {
+      height: 1px;
+      background: var(--ink-faint);
+      opacity: 0.4;
+      margin: 0 2.5rem;
+    }
+
+    /* ─── ABOUT ─── */
+    #about {
+      padding: 8rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .about-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-top: 0.4rem;
+    }
+    .about-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 300;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+    .about-text strong { font-weight: 600; }
+
+    /* ─── WORK ─── */
+    #things {
+      background: var(--bg2);
+      padding: 7rem 2.5rem;
+    }
+    .things-inner { max-width: 1100px; margin: 0 auto; }
+    .things-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 4rem;
+    }
+    .things-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      font-style: italic;
+    }
+    .things-note { font-size: 0.78rem; color: var(--ink-soft); }
+
+    .things-list { list-style: none; border-top: 1px solid var(--ink-faint); }
+    .thing {
+      display: grid;
+      grid-template-columns: 2fr 1fr auto;
+      align-items: baseline;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--ink-faint);
+      cursor: default;
+    }
+    .thing:hover .thing-name { color: var(--rust); }
+    .thing-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .thing-desc {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      margin-top: 0.3rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .thing-year { font-size: 0.75rem; color: var(--ink-faint); text-align: right; }
+    .thing-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rust);
+      border: 1px solid var(--rust-lt);
+      padding: 0.25rem 0.65rem;
+      white-space: nowrap;
+      justify-self: end;
+    }
+
+    /* ─── INTERLUDE ─── */
+    #interlude {
+      padding: 9rem 2.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.45;
+    }
+    .quote-attr {
+      display: block;
+      margin-top: 2rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 8rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #contact::before {
+      content: 'Hello.';
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28vw;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.03);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .contact-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .contact-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(250,247,242,0.4);
+      margin-bottom: 2rem;
+    }
+    .contact-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 3.5rem;
+    }
+    .contact-heading em { font-style: italic; color: var(--rust-lt); }
+    .contact-email {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 2.5vw, 2rem);
+      font-weight: 300;
+      color: var(--bg);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(250,247,242,0.3);
+      padding-bottom: 4px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-email:hover { color: var(--rust-lt); border-color: var(--rust-lt); }
+    .contact-socials {
+      display: flex; gap: 2rem; flex-wrap: wrap;
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(250,247,242,0.1);
+    }
+    .contact-socials a {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(250,247,242,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-socials a:hover { color: var(--bg); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      padding: 1.5rem 2.5rem;
+      display: flex; justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.7rem;
+      color: rgba(250,247,242,0.2);
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 700px) {
+      #about { grid-template-columns: 1fr; gap: 2rem; padding: 5rem 1.5rem; }
+      .hero-bottom { flex-direction: column; gap: 2rem; align-items: flex-start; }
+      .arc { display: none; }
+      #hero, #things, #interlude { padding-left: 1.5rem; padding-right: 1.5rem; }
+      #contact { padding: 6rem 1.5rem; }
+      .thing { grid-template-columns: 1fr; gap: 0.4rem; }
+      .thing-year, .thing-tag { display: none; }
+      footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Advas</a>
+  <div class="nav-right">
+    <a href="#things">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Say hi</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="arc"></div>
+  <div class="hero-eyebrow">Games &amp; Apps</div>
+  <h1 class="hero-headline">
+    I make things<br>
+    people <em>enjoy</em><br>
+    using.
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">
+      I'm Advas. I build games and apps — small ones, strange ones, fun ones.
+      Things made with care, meant to be played and used by real people.
+    </p>
+    <a href="#things" class="hero-cta">
+      See my work
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-label reveal">Who I am</div>
+  <p class="about-text reveal d1">
+    I'm an independent developer who <strong>builds games and apps</strong> from scratch.
+    I care about the small details — the feel of a button, the timing of an animation,
+    the moment a mechanic just <em>clicks</em>. That's what keeps me going.
+  </p>
+</section>
+
+<div class="rule"></div>
+
+<!-- WORK -->
+<section id="things">
+  <div class="things-inner">
+    <div class="things-header reveal">
+      <h2 class="things-title">Things I've made</h2>
+      <span class="things-note">Games &amp; apps</span>
+    </div>
+    <ul class="things-list">
+      <li class="thing reveal">
+        <div>
+          <span class="thing-name">Your Game Title Here</span>
+          <span class="thing-desc">Short description of what this game is and why it's interesting.</span>
+        </div>
+        <span class="thing-year">2024</span>
+        <span class="thing-tag">Game</span>
+      </li>
+      <li class="thing reveal d1">
+        <div>
+          <span class="thing-name">Another Project</span>
+          <span class="thing-desc">What does it do? What's the hook?</span>
+        </div>
+        <span class="thing-year">2024</span>
+        <span class="thing-tag">App</span>
+      </li>
+      <li class="thing reveal d2">
+        <div>
+          <span class="thing-name">Third Thing</span>
+          <span class="thing-desc">A short line is all you need.</span>
+        </div>
+        <span class="thing-year">2023</span>
+        <span class="thing-tag">Game</span>
+      </li>
+      <li class="thing reveal d3">
+        <div>
+          <span class="thing-name">Something Else</span>
+          <span class="thing-desc">Whatever you've built and are proud of.</span>
+        </div>
+        <span class="thing-year">2023</span>
+        <span class="thing-tag">App</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- INTERLUDE -->
+<section id="interlude">
+  <blockquote class="quote reveal">
+    "The best games are the ones you can't explain why you love —
+    you just keep coming back."
+  </blockquote>
+  <span class="quote-attr reveal d1">Something I believe</span>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-label reveal">Get in touch</div>
+    <h2 class="contact-heading reveal d1">
+      Got an idea?<br><em>Let's talk.</em>
+    </h2>
+    <a href="mailto:hello@advas.dev" class="contact-email reveal d2">hello@advas.dev</a>
+    <div class="contact-socials reveal d3">
+      <a href="https://github.com/advas" target="_blank">GitHub</a>
+      <a href="https://itch.io/advas" target="_blank">itch.io</a>
+      <a href="https://twitter.com/advas" target="_blank">Twitter / X</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Advas</span>
+  <span id="yr"></span>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = '© ' + new Date().getFullYear();
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
