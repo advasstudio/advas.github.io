@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Advas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #141210;
+      --surface:   #1F1D1A;
+      --ink:       #EDE9E3;
+      --ink-soft:  #8C867D;
+      --ink-faint: #3A3732;
+      --gold:      #D4A843;
+      --gold-dim:  #5C4A1E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Manrope', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.055'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.8rem 3rem;
+      border-bottom: 1px solid var(--ink-faint);
+    }
+    .nav-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-back {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    .page-header {
+      padding: 5rem 3rem 4rem;
+      border-bottom: 1px solid var(--ink-faint);
+      max-width: 860px;
+    }
+    .page-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .page-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+    .page-updated {
+      font-size: 0.75rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.05em;
+    }
+
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 5rem 3rem 8rem;
+    }
+
+    .section { margin-bottom: 4rem; }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--ink-faint);
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--ink-soft);
+      margin-bottom: 1rem;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    a:hover { border-color: var(--gold); }
+
+    ul {
+      margin: 0.75rem 0 1rem 0;
+      padding-left: 1.25rem;
+    }
+    li {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--ink-soft);
+      margin-bottom: 0.75rem;
+    }
+    li strong { color: var(--ink); }
+
+    .highlight-box {
+      background: var(--surface);
+      border-left: 3px solid var(--gold);
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--ink-soft);
+    }
+
+    .stores {
+      display: flex; gap: 0.6rem; flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .store-badge {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+      padding: 0.3rem 0.75rem;
+    }
+
+    footer {
+      background: var(--surface);
+      padding: 1.5rem 3rem;
+      display: flex; justify-content: space-between;
+      border-top: 1px solid var(--ink-faint);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 600px) {
+      nav, .page-header, .content, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .page-header { padding-top: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-name">Advas</a>
+  <a href="/" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M11 7H3M3 7L7 3M3 7L7 11" stroke="currentColor" stroke-width="1.2"/>
+    </svg>
+    Back to Home
+  </a>
+</nav>
+
+<div class="page-header">
+  <div class="page-label">Legal</div>
+  <h1 class="page-title">Privacy Policy</h1>
+  <p class="page-updated">Last updated: <span id="date"></span></p>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <h2 class="section-title">Overview</h2>
+    <p>
+      This privacy policy applies to all apps developed and published by Advas, available across
+      the following platforms:
+    </p>
+    <div class="stores">
+      <span class="store-badge">Google Play</span>
+      <span class="store-badge">Huawei AppGallery</span>
+      <span class="store-badge">Amazon Appstore</span>
+      <span class="store-badge">OPPO App Market</span>
+    </div>
+    <p>
+      I take your privacy seriously. This document explains what data is collected when you
+      use my apps, why it's collected, and how it's handled.
+    </p>
+    <div class="highlight-box">
+      I don't sell your data. I don't share it with anyone except the third-party services
+      listed below, which power ads and analytics in my apps.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Data Collected</h2>
+    <p>
+      I don't directly collect or store any personal information. My apps use the following
+      third-party services which may collect data:
+    </p>
+    <ul>
+      <li>
+        <strong>Huawei Petal Ads</strong> — used to serve ads across all versions of the app.
+        Petal Ads may collect device identifiers and usage data to deliver relevant advertisements,
+        in accordance with Huawei's privacy practices.<br>
+        <a href="https://consumer.huawei.com/en/privacy/privacy-policy/" target="_blank">Huawei Privacy Policy →</a>
+      </li>
+      <li>
+        <strong>Firebase Analytics (Google)</strong> — used to understand how people use the app
+        (screens visited, session length, crash reports). Data is anonymous and aggregated.<br>
+        <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy →</a>
+      </li>
+      <li>
+        <strong>Huawei Mobile Services (HMS Core)</strong> — core platform services on Huawei
+        devices that may collect diagnostic and performance data.
+      </li>
+    </ul>
+    <p>
+      I do not collect personally identifiable information such as your name, email address,
+      or precise location.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">How Data Is Used</h2>
+    <p>Data collected through these services is used only to:</p>
+    <ul>
+      <li>Show ads that help keep the app free</li>
+      <li>Understand how the app is used so I can improve it</li>
+      <li>Diagnose crashes and fix performance issues</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Children's Privacy</h2>
+    <p>
+      My apps are not directed at children under the age of 13. I do not knowingly collect
+      personal information from children. If you believe a child has provided personal
+      information through one of my apps, please contact me and I will take steps to address it.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Data Retention</h2>
+    <p>
+      Since I don't directly collect or store personal data on my own servers, there is nothing
+      for me to retain or delete. For data held by third-party services, please refer to their
+      respective privacy policies and your device's privacy settings.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Your Rights</h2>
+    <p>
+      Depending on your region, you may have rights regarding your personal data — including
+      access, correction, or deletion. For data processed by Huawei or Google, these requests
+      should be directed to them. For anything else, contact me directly.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Changes to This Policy</h2>
+    <p>
+      I may update this policy from time to time. Any changes will be reflected on this page
+      with an updated date at the top. Continued use of my apps after changes are posted
+      constitutes your acceptance of the updated policy.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Contact</h2>
+    <p>Questions about this policy or how your data is handled?</p>
+    <p><a href="mailto:advasstudio@gmail.com">hello@advas.dev</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <span>Advas — Games &amp; Apps</span>
+  <span id="yr"></span>
+</footer>
+
+<script>
+  const now = new Date();
+  document.getElementById('date').textContent = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  document.getElementById('yr').textContent = '© ' + now.getFullYear();
+</script>
+</body>
+</html>
