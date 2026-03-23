@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — Advas</title>
+  <title>Privacy Policy (Google Play) — Advas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -143,17 +143,15 @@
       color: var(--ink-soft);
     }
 
-    .stores {
-      display: flex; gap: 0.6rem; flex-wrap: wrap;
-      margin: 1rem 0;
-    }
     .store-badge {
+      display: inline-block;
       font-size: 0.65rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gold);
       border: 1px solid var(--gold-dim);
       padding: 0.3rem 0.75rem;
+      margin: 0.75rem 0;
     }
 
     footer {
@@ -185,7 +183,7 @@
 </nav>
 
 <div class="page-header">
-  <div class="page-label">Legal</div>
+  <div class="page-label">Legal — Google Play</div>
   <h1 class="page-title">Privacy Policy</h1>
   <p class="page-updated">Last updated: <span id="date"></span></p>
 </div>
@@ -195,15 +193,9 @@
   <div class="section">
     <h2 class="section-title">Overview</h2>
     <p>
-      This privacy policy applies to all apps developed and published by Advas, available across
-      the following platforms:
+      This privacy policy applies to all apps developed and published by Advas on:
     </p>
-    <div class="stores">
-      <span class="store-badge">Google Play</span>
-      <span class="store-badge">Huawei AppGallery</span>
-      <span class="store-badge">Amazon Appstore</span>
-      <span class="store-badge">OPPO App Market</span>
-    </div>
+    <div class="store-badge">Google Play</div>
     <p>
       I take your privacy seriously. This document explains what data is collected when you
       use my apps, why it's collected, and how it's handled.
@@ -222,10 +214,9 @@
     </p>
     <ul>
       <li>
-        <strong>Huawei Petal Ads</strong> — used to serve ads across all versions of the app.
-        Petal Ads may collect device identifiers and usage data to deliver relevant advertisements,
-        in accordance with Huawei's privacy practices.<br>
-        <a href="https://consumer.huawei.com/en/privacy/privacy-policy/" target="_blank">Huawei Privacy Policy →</a>
+        <strong>Google AdMob</strong> — used to serve ads. AdMob may collect your device's
+        advertising ID and usage data to deliver relevant advertisements.<br>
+        <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy →</a>
       </li>
       <li>
         <strong>Firebase Analytics (Google)</strong> — used to understand how people use the app
@@ -233,8 +224,8 @@
         <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy →</a>
       </li>
       <li>
-        <strong>Huawei Mobile Services (HMS Core)</strong> — core platform services on Huawei
-        devices that may collect diagnostic and performance data.
+        <strong>Google Play Services</strong> — core platform services that may collect
+        diagnostic and performance data.
       </li>
     </ul>
     <p>
@@ -266,8 +257,8 @@
     <h2 class="section-title">Data Retention</h2>
     <p>
       Since I don't directly collect or store personal data on my own servers, there is nothing
-      for me to retain or delete. For data held by third-party services, please refer to their
-      respective privacy policies and your device's privacy settings.
+      for me to retain or delete. For data held by Google, please refer to their privacy
+      policy and your Google account settings.
     </p>
   </div>
 
@@ -275,8 +266,8 @@
     <h2 class="section-title">Your Rights</h2>
     <p>
       Depending on your region, you may have rights regarding your personal data — including
-      access, correction, or deletion. For data processed by Huawei or Google, these requests
-      should be directed to them. For anything else, contact me directly.
+      access, correction, or deletion. For data processed by Google, these requests should be
+      directed to them. For anything else, contact me directly.
     </p>
   </div>
 
@@ -292,7 +283,7 @@
   <div class="section">
     <h2 class="section-title">Contact</h2>
     <p>Questions about this policy or how your data is handled?</p>
-    <p><a href="mailto:advasstudio@gmail.com">hello@advas.dev</a></p>
+    <p><a href="mailto:advasstudio@gmail.com">advasstudio@gmail.com</a></p>
   </div>
 
 </div>
